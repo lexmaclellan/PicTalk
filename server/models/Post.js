@@ -7,6 +7,6 @@ const postSchema = new Schema({
   }
 });
 
-const Matchup = model('Matchup', matchupSchema);
+const Post = model('Post', postSchema);
 
-module.exports = Matchup;
+module.exports = Post;
