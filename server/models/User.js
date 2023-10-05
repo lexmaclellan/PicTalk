@@ -48,6 +48,10 @@ userSchema.virtual('friendCount').get(function () {
     return this.friends.length
 })
 
+userSchema.virtual('postCount').get(function () {
+    return this.posts.length
+})
+
 const User = model('User', userSchema)
 
 module.exports = User
