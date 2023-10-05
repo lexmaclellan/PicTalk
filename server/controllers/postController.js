@@ -70,8 +70,8 @@ module.exports = {
                 return res.status(404).json({ message: 'No post found with that ID.' })
             }
 
-            const user = await User.findByIdAndUpdate(
-                { username: post.username },
+            const user = await User.findOneAndUpdate(
+                { name: post.username },
                 { $pull: { posts: req.params.postId } },
                 { new: true }
             )
