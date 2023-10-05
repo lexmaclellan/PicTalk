@@ -1,45 +1,40 @@
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import React from 'react'
+import Footer from './Footer';
 
-const Home = () => {
-  const { loading, data } = useQuery(QUERY_MATCHUPS, {
-    fetchPolicy: "no-cache"
-  });
-
-  const matchupList = data?.matchups || [];
-
+export default function Home() {
   return (
-    <div className="card bg-white card-rounded w-50">
-      <div className="card-header bg-dark text-center">
-        <h1>Welcome to Tech Matchup!</h1>
+    <div>
+     <Container >
+      <Row>
+        <Col xs={6} md={4}>
+          <Image src="/img/image.jpg" thumbnail  />
+        </Col>
+      </Row>
+    </Container >
+    <div style={{fontSize: "30px" }}>
+        Donec a volutpat quam. Curabitur nec varius justo, sed rutrum ligula.
+        Curabitur pellentesque turpis sit amet eros iaculis, a mollis arcu
+        dictum. Ut vel ante eget massa ornare placerat. Etiam nisl orci, finibus
+        sodales volutpat et, hendrerit ut dolor. Suspendisse porta dictum nunc,
+        sed pretium risus rutrum eget. Nam consequat, ligula in faucibus
+        vestibulum, nisi justo laoreet risus, luctus luctus mi lacus sit amet
+        libero. Class aptent taciti sociosqu ad litora torquent per conubia
+        nostra, per inceptos himenaeos. Mauris pretium condimentum tellus eget
+        lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+        Donec placerat accumsan mi, ut congue neque placerat eu. Donec nec ipsum
+        in velit pellentesque vehicula sit amet at augue. Maecenas aliquam
+        bibendum congue. Pellentesque semper, lectus non ullamcorper iaculis,
+        est ligula suscipit velit, sed bibendum turpis dui in sapien.
       </div>
-      <div className="card-body m-5">
-        <h2>Here is a list of matchups you can vote on:</h2>
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <ul className="square">
-            {matchupList.map((matchup) => {
-              return (
-                <li key={matchup._id}>
-                  <Link to={{ pathname: `/matchup/${matchup._id}` }}>
-                    {matchup.tech1} vs. {matchup.tech2}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-      <div className="card-footer text-center m-3">
-        <h2>Ready to create a new matchup?</h2>
-        <Link to="/matchup">
-          <button className="btn btn-lg btn-danger">Create Matchup!</button>
-        </Link>
-      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <Footer />
     </div>
   );
-};
-
-export default Home;
+}
