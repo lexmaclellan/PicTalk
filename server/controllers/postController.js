@@ -25,20 +25,11 @@ module.exports = {
         }
     },
 
-    async getPostsFromUser(req, res) {
-        try {
-            const post = await Post.find({ name: req.params.username })
-            res.json(posts)
-        } catch (err) {
-            res.status(500).json(err)
-        }
-    },
-
     async createPost(req, res) {
         try {
             const post = await Post.create(req.body)
             const user = await User.findOneAndUpdate(
-                { name: req.body.username },
+                { username: req.body.username },
                 { $push: { posts: post._id } },
                 { new: true }
             )
@@ -131,7 +122,7 @@ module.exports = {
         try {
             const comment = await Post.findByIdAndUpdate(
                 req.params.postId,
-                { $pull: { comments: { commentId:req.params.commentId } } },
+                { $pull: { comments: { _id:req.params.commentId } } },
                 { runValidators: true, new: true }
             )
 
