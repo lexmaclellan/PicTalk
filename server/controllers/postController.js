@@ -25,6 +25,15 @@ module.exports = {
         }
     },
 
+    async getPostsFromUser(req, res) {
+        try {
+            const post = await Post.find({ name: req.params.username })
+            res.json(posts)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+
     async createPost(req, res) {
         try {
             const post = await Post.create(req.body)
@@ -86,6 +95,20 @@ module.exports = {
         }
     },
 
+    async getComments(req, res) {
+        try {
+            const post = await Post.findById(req.params.postId)
+
+            if (!post) {
+                return res.status(404).json({ message: 'No post found with that ID.' })
+            }
+
+            res.json(post.comments)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+
     async addComment(req, res) {
         try {
             const comment = await Post.findByIdAndUpdate(
@@ -107,7 +130,7 @@ module.exports = {
     async removeComment(req, res) {
         try {
             const comment = await Post.findByIdAndUpdate(
-                req.params.thoughtId,
+                req.params.postId,
                 { $pull: { comments: { commentId:req.params.commentId } } },
                 { runValidators: true, new: true }
             )
@@ -116,7 +139,7 @@ module.exports = {
                 return res.status(404).json({ message: 'No post found with that ID.' })
             }
 
-            res.json(comment)
+            res.json({ message: 'Comment deleted.' })
         } catch (err) {
             res.status(500).json(err)
         }
