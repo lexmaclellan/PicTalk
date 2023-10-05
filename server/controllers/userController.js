@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { User, Post } = require('../models')
 
 module.exports = {
 
@@ -97,6 +97,45 @@ module.exports = {
             }
 
             res.json(user)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+
+    async getPostsFromUser(req, res) {
+        try {
+            const post = await Post.find({ username: req.params.username })
+            res.json(post)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+
+    async getPostsFromFriends(req, res) {
+        try {
+            const user = await User.findOne({ username: req.params.username })
+            
+            if (!user) {
+                return res.status(404).json({ message: 'No user found with that username.' })
+            }
+
+            const friends = []
+            for (let i = 0; i < user.friendCount; i++) {
+                const friend = await User.findById(user.friends[i])
+
+                if (!friend) {
+                    return res.status(404).json({ message: 'Invalid friend ID.' })
+                }
+                
+                friends.push(friend)
+            }
+
+            const posts = []
+            for (let n = 0; n < friends.length; n++) {
+                //const post = await Post.findById
+            }
+
+            res.json(posts)
         } catch (err) {
             res.status(500).json(err)
         }
