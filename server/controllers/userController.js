@@ -119,20 +119,23 @@ module.exports = {
                 return res.status(404).json({ message: 'No user found with that username.' })
             }
 
-            const friends = []
+            const posts = []
             for (let i = 0; i < user.friendCount; i++) {
                 const friend = await User.findById(user.friends[i])
 
                 if (!friend) {
                     return res.status(404).json({ message: 'Invalid friend ID.' })
                 }
-                
-                friends.push(friend)
-            }
 
-            const posts = []
-            for (let n = 0; n < friends.length; n++) {
-                //const post = await Post.findById
+                for (let n = 0; n < friend.postCount; n++) {
+                    const post = await Post.findById(friend.posts[n])
+
+                    if (!post) {
+                        return res.status(404).json({ message: 'Invalid post ID.' })
+                    }
+
+                    posts.push(post)
+                }
             }
 
             res.json(posts)
