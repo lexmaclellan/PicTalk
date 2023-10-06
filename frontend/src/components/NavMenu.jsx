@@ -9,14 +9,11 @@ export default function NavMenu() {
     <div className = {classes.nav} >
       <ul>
         <li>
-          <NavLink to ="/" >HOME PAGE</NavLink>
+          <NavLink to ="/" > HOME PAGE</NavLink>
         </li>
         <li>
           <NavLink to ="/Profile">PROFILE PAGE</NavLink>
         </li>
-        {/* <li>
-           <NavLink to ="/Contact">ONE MORE PAGE</NavLink>
-        </li> */}
          <li>
             <NavLink to ="/Resume">ONE MORE PAGE</NavLink>
         </li>

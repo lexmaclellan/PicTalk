@@ -1,0 +1,12 @@
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+}
+ 
+.rounded {
+    border-radius: var(--mdb-border-radius)!important;
+}
+.img-responsive {
+    margin-top:10px;
+}   

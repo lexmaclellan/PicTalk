@@ -41,6 +41,7 @@ const UploadAndDisplayImage = () => {
           />
           <br />
           <button onClick={() => setSelectedImage(null)}>Remove</button>
+          
         </div>
       )}
 
