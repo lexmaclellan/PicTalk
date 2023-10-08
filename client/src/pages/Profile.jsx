@@ -1,70 +1,80 @@
-// import React from 'react'
-// import Project from './Project';
 
-// export default function Profile() {
-//   return (
-//     <div>
-//       <h1 className="center">My Projects</h1>
-//         <div style={{border:"solid blue 5px"}}>
-//           <Project />
-//           <Project />
-//           <Project />
-//           <div className="card" style={{width: "18rem"}}>
-//             <img src="/img/Tech_blog.png" className="card-img-top" alt="..."/>
-//             <div classname="card-body">
-//              
-//           </div>
-//         </div>
-//         </div>
-//     </div>
-//   );
-// }
-
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
 
-const UploadAndDisplayImage = () => {
+const ImageGallery = () => {
+  const [images, setImages] = useState([]);
+  const [description, setDescription] = useState('');
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  useEffect(() => {
+    // Retrieve images from local storage on component mount
+    const storedImages = localStorage.getItem('imageGallery');
+    if (storedImages) {
+      setImages(JSON.parse(storedImages));
+    }
+  }, []);
+
+  const handleImageChange = (event) => {
+    const files = event.target.files;
+    const newImages = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        newImages.push({ data: e.target.result, description: description || 'No description' });
+
+        // If all images are processed, update the state
+        if (newImages.length === files.length) {
+          setImages([...images, ...newImages]);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const handleUploadClick = () => {
+    // Save to local storage
+    localStorage.setItem('imageGallery', JSON.stringify(images));
+  };
 
   return (
-    <div style={{textAlign: "center"}}>
-      <h1 >Some header here</h1>
-
-      {selectedImage && (
-        <div >
-          <img 
-            alt="not found"
-            width={"600px"}
-            src={URL.createObjectURL(selectedImage)}
-          />
-          <br />
-          <button onClick={() => setSelectedImage(null)}>Remove</button>
-        </div>
-      )}
-
+    <div>
+     <br />
+     <br />
+      <div>
+        <input style={{border: "solid", borderRadius: "8px", width: "100px", fontSize: "15px"}} type="file" onChange={handleImageChange} multiple />
+      </div>
+      <br />
+      <div>
+        <label style={{fontSize: "20px"}}>Description:</label>
+        <input style={{width: "800px"}} type="text" value={description} onChange={handleDescriptionChange} />
+      </div>
+      <br />
+      <div>
+        <button style={{borderRadius: "8px", width: "100px", fontSize: "15px"}} onClick={handleUploadClick}>Upload</button>
+      </div>
       <br />
       <br />
-      <input
-        type="file"
-        name="myImage"
-        onChange={(event) => {
-          console.log(event.target.files[0]);
-          setSelectedImage(event.target.files[0]);
-        }}
-      />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <div style={{textAlign: "center"}}>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img style={{flexDirection: "row", justifyContent: "space-between", width: "600px", height: "600px"}} src={image.data} alt={`Image ${index}`} />
+            <p>Description: {image.description}</p>
+          </div>
+        ))}
+      </div>
       <Footer />
     </div>
   );
 };
 
-export default UploadAndDisplayImage;
+
+export default ImageGallery;
+

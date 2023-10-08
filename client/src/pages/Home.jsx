@@ -8,28 +8,22 @@ import Footer from './Footer';
 export default function Home() {
   return (
     <div>
+      <br />
+				<button style={{float: "right", borderRadius: "8px", width: "100px", fontSize: "20px"}} type="submit">Log Out</button>
+      <br />
      <Container >
       <Row>
-        <Col xs={6} md={4}>
-          <Image src="/img/image.jpg" thumbnail  />
+        <Col style={{textAlign: "center"}}>
+          <Image src="/img/logo.png" thumbnail  />
         </Col>
       </Row>
     </Container >
     <div style={{fontSize: "30px" }}>
-        Donec a volutpat quam. Curabitur nec varius justo, sed rutrum ligula.
-        Curabitur pellentesque turpis sit amet eros iaculis, a mollis arcu
-        dictum. Ut vel ante eget massa ornare placerat. Etiam nisl orci, finibus
-        sodales volutpat et, hendrerit ut dolor. Suspendisse porta dictum nunc,
-        sed pretium risus rutrum eget. Nam consequat, ligula in faucibus
-        vestibulum, nisi justo laoreet risus, luctus luctus mi lacus sit amet
-        libero. Class aptent taciti sociosqu ad litora torquent per conubia
-        nostra, per inceptos himenaeos. Mauris pretium condimentum tellus eget
-        lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-        Donec placerat accumsan mi, ut congue neque placerat eu. Donec nec ipsum
-        in velit pellentesque vehicula sit amet at augue. Maecenas aliquam
-        bibendum congue. Pellentesque semper, lectus non ullamcorper iaculis,
-        est ligula suscipit velit, sed bibendum turpis dui in sapien.
-      </div>
+        Hello, friends! Wellcome to our application called PicTalk - 
+        here you can share your pictures and thoughts, 
+        follow people with same interests, leave comments and likes - 
+        let's make our life more colorful with the pictures of the beauty around us!
+    </div>
       <br />
       <br />
       <br />
