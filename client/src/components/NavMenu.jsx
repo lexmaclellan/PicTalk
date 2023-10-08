@@ -14,9 +14,6 @@ export default function NavMenu() {
         <li>
           <NavLink to ="/Profile">PROFILE PAGE</NavLink>
         </li>
-         {/* <li>
-            <NavLink to ="/Resume">ONE MORE PAGE</NavLink>
-        </li> */}
         <li>
             <NavLink to ="/Login">Login</NavLink>
         </li>
