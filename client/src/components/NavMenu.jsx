@@ -9,7 +9,7 @@ export default function NavMenu() {
     <div className = {classes.nav} >
       <ul>
         <li>
-          <NavLink to ="/" > HOME PAGE</NavLink>
+          <NavLink to ="/" >HOME PAGE</NavLink>
         </li>
         <li>
           <NavLink to ="/Profile">PROFILE PAGE</NavLink>
