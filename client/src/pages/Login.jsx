@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 //import { FETCH_USER_DATA } from "../contexts/types.js";
 import { LOGIN_URL } from "../constants";
 import { EmailRegex } from "../utils/regex.js";
+import  BackgroundImage  from "../utils/logo-piktalk.png"
 import axios from "axios";
 // Material-UI Components
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 	image: {
 		backgroundSize: "cover",
 		backgroundColor: "#fafafa",
-		backgroundImage: "url(https://source.unsplash.com/random)",
+		backgroundImage: `url(${BackgroundImage})`,
 		backgroundRepeat: "no-repeat",
 		backgroundPosition: "center",
 		height: "100vh",

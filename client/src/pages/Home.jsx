@@ -1,22 +1,22 @@
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';
+// import { Link } from 'react-router-dom';
+// import { useQuery } from '@apollo/client';
+// import { QUERY_MATCHUPS } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_MATCHUPS, {
-    fetchPolicy: "no-cache"
-  });
+  // const { loading, data } = useQuery(QUERY_MATCHUPS, {
+  //   fetchPolicy: "no-cache"
+  // });
 
-  const matchupList = data?.matchups || [];
+  // const matchupList = data?.matchups || [];
 
   return (
     <div className="card bg-white card-rounded w-50">
       <div className="card-header bg-dark text-center">
-        <h1>Welcome to Tech Matchup!</h1>
+        <h1>Welcome to Pic Talk mock home page!</h1>
       </div>
       <div className="card-body m-5">
-        <h2>Here is a list of matchups you can vote on:</h2>
-        {loading ? (
+        <h2>The login works</h2>
+        {/* {loading ? (
           <div>Loading...</div>
         ) : (
           <ul className="square">
@@ -37,8 +37,9 @@ const Home = () => {
         <Link to="/matchup">
           <button className="btn btn-lg btn-danger">Create Matchup!</button>
         </Link>
-      </div>
-    </div>
+          </div> */}
+        </div>
+    </div> 
   );
 };
 
