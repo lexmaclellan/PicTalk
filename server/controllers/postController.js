@@ -145,38 +145,48 @@ module.exports = {
         }
     },
 
-    async addLike(req, res) {
+    async modifyLike(req, res) {
         try {
+            // Find whether the username has already liked the post
+            const post = await Post.findById(req.params.postId)
+            const user = req.params.username
             
-            const post = await Post.findByIdAndUpdate(
-                req.params.postId,
-                { $addToSet: { likes: req.params } },
-                { runValidators: true, new: true }
-            )
-
-            if (!post) {
-                return res.status(404).json({ message: 'No post found with that ID.' })
+            let removeLike = false
+            for (let i = 0; i < post.likeCount; i++) {
+                if (post.likes[i].username === user) {
+                    removeLike = true
+                    i = post.likeCount
+                }
             }
 
-            res.json(post)
-        } catch (err) {
-            res.status(500).json(err)
-        }
-    },
-
-    async removeLike(req, res) {
-        try {
-            const post = await Post.findByIdAndUpdate(
-                req.params.postId,
-                { $pull: { likes: { username: req.params.username } } },
-                { runValidators: true, new: true }
-            )
-
-            if (!post) {
-                return res.status(404).json({ message: 'No post found with that ID.' })
+            // Remove the like if the username was found
+            if (removeLike) {
+                const like = await Post.findByIdAndUpdate(
+                    req.params.postId,
+                    { $pull: { likes: { username: req.params.username } } },
+                    { runValidators: true, new: true }
+                )
+    
+                if (!like) {
+                    return res.status(404).json({ message: 'No post found with that ID.' })
+                }
+    
+                res.json(like)
             }
-
-            res.json(post)
+            // Add a like if the username was not found
+            else {
+                const like = await Post.findByIdAndUpdate(
+                    req.params.postId,
+                    { $addToSet: { likes: req.params } },
+                    { runValidators: true, new: true }
+                )
+    
+                if (!like) {
+                    return res.status(404).json({ message: 'No post found with that ID.' })
+                }
+    
+                res.json(like)
+            }
         } catch (err) {
             res.status(500).json(err)
         }
