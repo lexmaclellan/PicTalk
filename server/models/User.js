@@ -7,7 +7,7 @@ const validateEmail = function(email) {
 
 const userSchema = new Schema(
     {
-        name: {
+        username: {
             type: String,
             required: true,
             unique: true,
@@ -46,6 +46,10 @@ const userSchema = new Schema(
 
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length
+})
+
+userSchema.virtual('postCount').get(function () {
+    return this.posts.length
 })
 
 const User = model('User', userSchema)
