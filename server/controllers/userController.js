@@ -138,7 +138,15 @@ module.exports = {
                 }
             }
 
-            res.json(posts)
+            sortByDate = (a, b) => {
+                const dateA = new Date(a.createdAt)
+                const dateB = new Date(b.createdAt)
+                if (dateA < dateB) return 1
+                else if (dateA > dateB) return -1
+                return 0
+            }
+
+            res.json(posts.sort(sortByDate))
         } catch (err) {
             res.status(500).json(err)
         }
