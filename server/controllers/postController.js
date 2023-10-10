@@ -25,6 +25,15 @@ module.exports = {
         }
     },
 
+    async getTaggedPosts(req, res) {
+        try {
+            const posts = await Post.find({ tags: req.params.tagId })
+            res.json(posts)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+
     async createPost(req, res) {
         try {
             const post = await Post.create(req.body)
@@ -35,7 +44,7 @@ module.exports = {
             )
 
             if (!user) {
-                return res.status(404).json({ message: 'Invalid user ID.' })
+                return res.status(404).json({ message: 'Invalid username.' })
             }
 
             res.json(post)
@@ -131,6 +140,43 @@ module.exports = {
             }
 
             res.json({ message: 'Comment deleted.' })
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+
+    async addLike(req, res) {
+        try {
+            
+            const post = await Post.findByIdAndUpdate(
+                req.params.postId,
+                { $addToSet: { likes: req.params } },
+                { runValidators: true, new: true }
+            )
+
+            if (!post) {
+                return res.status(404).json({ message: 'No post found with that ID.' })
+            }
+
+            res.json(post)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+
+    async removeLike(req, res) {
+        try {
+            const post = await Post.findByIdAndUpdate(
+                req.params.postId,
+                { $pull: { likes: { username: req.params.username } } },
+                { runValidators: true, new: true }
+            )
+
+            if (!post) {
+                return res.status(404).json({ message: 'No post found with that ID.' })
+            }
+
+            res.json(post)
         } catch (err) {
             res.status(500).json(err)
         }
