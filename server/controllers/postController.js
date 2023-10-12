@@ -190,6 +190,24 @@ module.exports = {
         } catch (err) {
             res.status(500).json(err)
         }
+    },
+
+    async addTag(req, res) {
+        try {
+            const post = await Post.findByIdAndUpdate(
+                req.params.postId,
+                { $addToSet: { tags: req.params } },
+                { runValidators: true, new: true }
+            )
+
+            if (!post) {
+                return res.status(404).json({ message: 'No post found with that ID.' })
+            }
+
+            res.json(post)
+        } catch (err) {
+            res.status(500).json(err)
+        }
     }
 
 }
