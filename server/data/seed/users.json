@@ -1,0 +1,91 @@
+[
+    {
+      "_id": "652880537a7182bc3a7c8af4",
+      "username": "Drake919",
+      "avatar": "http://placehold.it/32x32",
+      "email": "drakehughes@corporana.com",
+      "password": "sint924",
+      "friends": [
+        "65288053e7fdf406bdbd02ed",
+        "652880539dca6b78335ba8df",
+        "652880533fe0f84767a2692e",
+        "652880533fe0f84767a2692e",
+        "652880534c6881757728795e",
+        "65288053330a5e14e52d0b5c"
+      ],
+      "posts": [
+        "652881729094a979de02b713",
+        "652881725e2f6576b7e2cb1e",
+        "65288172a9374cf03a291701"
+      ]
+    },
+    {
+      "_id": "65288053e7fdf406bdbd02ed",
+      "username": "Berta512",
+      "avatar": "http://placehold.it/32x32",
+      "email": "bertahughes@corporana.com",
+      "password": "ut153",
+      "posts": [
+        "6528817287aad080dab8a448",
+        "65288172fe399533e00a469b",
+        "65288172d1cedac66ba0190a",
+        "65288172f779e58eb17991c5"
+      ]
+    },
+    {
+      "_id": "652880539dca6b78335ba8df",
+      "username": "Garcia567",
+      "avatar": "http://placehold.it/32x32",
+      "email": "garciahughes@corporana.com",
+      "password": "officia826",
+      "posts": [
+        "652881722bd65ea3ce8ca6b3",
+        "65288172119909991b478e93"
+      ]
+    },
+    {
+      "_id": "652880533fe0f84767a2692e",
+      "username": "Short850",
+      "avatar": "http://placehold.it/32x32",
+      "email": "shorthughes@corporana.com",
+      "password": "fugiat869",
+      "posts": [
+        "6528817219c800fd9414200a",
+        "65288172ef9b79a519ddcfb0",
+        "652881725509c44a762b069a",
+        "652881726493ca0d8fdb938c",
+        "6528817288d307564afad93d",
+        "65288172bd1b76e6cdb99b2b",
+        "65288172f0eceb4373ef0a8b",
+        "65288172120aa1d205d676db"
+      ]
+    },
+    {
+      "_id": "652880534c6881757728795e",
+      "username": "Mcmahon398",
+      "avatar": "http://placehold.it/32x32",
+      "email": "mcmahonhughes@corporana.com",
+      "password": "incididunt821",
+      "posts": [
+        "65288172e63dd8d4e1d04a2a",
+        "65288172893f2b6ca3fd8029",
+        "65288172c41007a79136108f"
+      ]
+    },
+    {
+      "_id": "65288053330a5e14e52d0b5c",
+      "username": "Mariana633",
+      "avatar": "http://placehold.it/32x32",
+      "email": "marianahughes@corporana.com",
+      "password": "eiusmod265",
+      "posts": [
+        "652881724502ddf0a3824b00",
+        "65288172aef1e868148ea21e",
+        "65288172afb6a055768b4eb4",
+        "65288172e333577360378579",
+        "652881723240785c9f55f794",
+        "65288172e2dc6787f515e409",
+        "6528817242c510ba6557b5ec"
+      ]
+    }
+  ]
