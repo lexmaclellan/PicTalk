@@ -78,33 +78,35 @@ const Signup = () => {
 
 	const handlePostData = () => {
 		// Here we check just if the given email has a correct format
-		if (EmailRegex.test(email)) {
-			axios.post(SIGNUP_URL, {
-				name,
-				password,
-				email,
-			})
-				.then((res) => {
-					const data = res.data;
-					if (data.error) {
-						setFormatValidation(false);
-						setAuthValidation(true);
-					} else {
-						// show the confirmation message
-						setConfirmValidation(true);
-						// set a timeOut before redirecting the user to login page
-						timerRef.current = setTimeout(() => {
-							history("/login");
-						}, 2800);
-					}
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-		} else {
-			setAuthValidation(false);
-			setFormatValidation(true);
-		}
+
+		console.log(email, name, password);
+		// if (EmailRegex.test(email)) {
+			// axios.post(SIGNUP_URL, {
+			// 	name,
+			// 	password,
+			// 	email,
+			// })
+			// 	.then((res) => {
+			// 		const data = res.data;
+			// 		if (data.error) {
+			// 			setFormatValidation(false);
+			// 			setAuthValidation(true);
+			// 		} else {
+			// 			// show the confirmation message
+			// 			setConfirmValidation(true);
+			// 			// set a timeOut before redirecting the user to login page
+			// 			timerRef.current = setTimeout(() => {
+			// 				history("/login");
+			// 			}, 2800);
+			// 		}
+			// 	})
+			// 	.catch((err) => {
+			// 		console.log(err);
+			// 	});
+		// } else {
+		// 	setAuthValidation(false);
+		// 	setFormatValidation(true);
+		// }
 	};
 
 	return (
@@ -155,6 +157,7 @@ const Signup = () => {
 								label="Email Address"
 								name="email"
 								autoComplete="email"
+								type="email"
 								value={email}
 								onChange={handleInputChanges}
 							/>
