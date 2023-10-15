@@ -13,6 +13,10 @@ const userSchema = new Schema(
             unique: true,
             maxlength: 50
         },
+        avatar: {
+            type: String,
+            maxlength: 200
+        },
         email: {
             type: String,
             required: true,

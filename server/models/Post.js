@@ -11,6 +11,11 @@ const postSchema = new Schema(
       maxlength: 1000,
       minlength: 1
     },
+    image: {
+      type: String,
+      required: true,
+      maxlength: 200
+    },
     username: {
       type: String,
       required: true,
