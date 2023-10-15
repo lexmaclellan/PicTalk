@@ -4,11 +4,9 @@ const routes = require('./routes')
 
 const cwd = process.cwd()
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3001
 const app = express()
-const  cors = require("cors");
 
-app.use(cors());
 app.unsubscribe(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(routes)
