@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const db = require('./config/connection')
 const routes = require('./routes')
 
@@ -9,6 +10,7 @@ const app = express()
 
 app.unsubscribe(express.urlencoded({ extended: true }))
 app.use(express.json())
+//app.use(cors)
 app.use(routes)
 
 db.once('open', () => {
