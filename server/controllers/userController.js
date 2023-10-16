@@ -1,5 +1,10 @@
 const { User, Post } = require('../models')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+
+const createToken = (_id) => {
+    return jwt.sign(_id, process.env.SECRET, { expiresIn: '3d' })
+}
 
 module.exports = {
 
@@ -23,9 +28,11 @@ module.exports = {
                 const salt = await bcrypt.genSalt(10)
                 const hash = await bcrypt.hash(newUser.password, salt)
                 newUser.password = hash
-                
+
                 const user = await User.create(newUser)
-                res.json(user)
+                const token = createToken(user._id)
+                console.log(token)
+                res.json({user, token})
             }
         } catch (err) {
             res.status(500).json(err)
