@@ -1,6 +1,36 @@
 const { User, Post } = require('../models')
+const bcrypt = require('bcryptjs')
 
 module.exports = {
+
+    async loginUser(req, res) {
+        try {
+            res.json({ message: "Coming soon" })
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+
+    async registerUser(req, res) {
+        try {
+            const emailExists = await User.find({ email: req.body.email })
+            
+            if (emailExists.length) {
+                return res.status(500).json({ message: 'Email already registered.' })
+            }
+            else {
+                const newUser = req.body
+                const salt = await bcrypt.genSalt(10)
+                const hash = await bcrypt.hash(newUser.password, salt)
+                newUser.password = hash
+                
+                const user = await User.create(newUser)
+                res.json(user)
+            }
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
 
     async getAllUsers(req, res) {
         try {
@@ -19,15 +49,6 @@ module.exports = {
                 return res.status(404).json({ message: 'No user found with that ID.' })
             }
 
-            res.json(user)
-        } catch (err) {
-            res.status(500).json(err)
-        }
-    },
-
-    async createUser(req, res) {
-        try {
-            const user = await User.create(req.body)
             res.json(user)
         } catch (err) {
             res.status(500).json(err)
@@ -77,7 +98,7 @@ module.exports = {
             if (!user) {
                 return res.status(404).json({ message: 'No user found with that ID.' })
             }
-            
+
             res.json(user)
         } catch (err) {
             res.status(500).json(err)
@@ -89,7 +110,7 @@ module.exports = {
             const user = await User.findByIdAndUpdate(
                 req.params.userId,
                 { $pull: { friends: req.params.friendId } },
-                { runValidators: true, new: true}
+                { runValidators: true, new: true }
             )
 
             if (!user) {
@@ -114,7 +135,7 @@ module.exports = {
     async getPostsFromFriends(req, res) {
         try {
             const user = await User.findOne({ username: req.params.username })
-            
+
             if (!user) {
                 return res.status(404).json({ message: 'No user found with that username.' })
             }
