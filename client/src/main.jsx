@@ -9,6 +9,7 @@ import App from './App';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import SignUp from './pages/SignUp';
 
 
 // Define the accessible routes, and which components respond to which URL
@@ -19,15 +20,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <Login />,
       },
       {
-        path: '/Login',
-        element: <Login />,
+        path: '/Home',
+        element: <Home/>,
       },
       {
         path: '/Profile',
         element: <Profile />,
+      },
+      {
+        path: '/Signup',
+        element: <SignUp />,
       },
       // {
       //   path: '/Resume',
