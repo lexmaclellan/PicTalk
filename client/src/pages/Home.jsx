@@ -4,12 +4,22 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import React from 'react'
 import Footer from './Footer';
+const handleLogout = () => {
+  localStorage.setItem('isSignedIn', 'false');
+
+  // ... any other logout operations you want to add
+};
 
 export default function Home() {
+
   return (
     <div>
       <br />
-				<button style={{float: "right", borderRadius: "8px", width: "100px", fontSize: "20px"}} type="submit">Log Out</button>
+      {/* <div style={{float: "right", borderRadius: "8px", width: "100px", fontSize: "20px"}}
+      >
+            <a href="/" onClick={handleLogout}>Log Out</a>
+          
+        </div> */}
       <br />
      <Container >
       <Row>
