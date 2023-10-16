@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 const User = require("../models/Login.js");
 
 // SignUp Controller
@@ -55,10 +55,10 @@ exports.signin = (req, res) => {
 			bcrypt.compare(password, savedUser.Password).then((doMatch) => {
 				if (doMatch) {
 					// jwt token created
-					const token = jwt.sign({ _id: savedUser._id }, process.env.JWT_SECRET);
+					// const token = jwt.sign({ _id: savedUser._id }, process.env.JWT_SECRET);
 					// retrieve the user info
 					const { _id, Name, Email, Followers, Following } = savedUser;
-					res.json({ token, user: { _id, Name, Email, Followers, Following } });
+					res.json({ user: { _id, Name, Email, Followers, Following } });
 				} else {
 					return res.json({
 						error: "Invalid Email or Password",
