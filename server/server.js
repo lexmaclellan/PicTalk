@@ -1,19 +1,19 @@
 const express = require('express')
 const db = require('./config/connection')
-const routes = require('./routes/api')
+const routes = require('./routes')
 
 const cwd = process.cwd()
 
 
 const PORT = process.env.PORT || 3001
 const app = express()
-const  cors = require("cors");
-const { connection } = require('mongoose')
+const cors = require("cors");
+//const { connection } = require('mongoose')
 
 app.use(cors());
 app.unsubscribe(express.urlencoded({ extended: true }))
 app.use(express.json())
-// app.use(routes)
+app.use(routes)
 require("./routes/api/loginRoutes")(app);
 
 
