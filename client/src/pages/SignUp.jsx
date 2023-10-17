@@ -1,11 +1,19 @@
 import React from 'react'
+import { useSignup } from '../hooks/useSignup'
 
-
-const Login=()=>{
+const Signup = () => {
     const [username, setUsername] = React.useState('')
+    const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+    const { signup, error, isLoading } = useSignup()
 
-	return(
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log(username, email, password)
+        await signup(username, email, password)
+    }
+
+    return(
 		<div style={{display: "flex", marginTop: "5em", width: "200px", height: "200px"}}>
 			<form action=""> 
 				<div> 
@@ -20,6 +28,17 @@ const Login=()=>{
                     /> 
 				</div> 
         <br />
+				<div> 
+					<label style={{color: "black", fontSize: "25px"}} htmlFor="email">Email</label>
+					<input
+                        style={{display: "flex", width: "400px"}}
+                        type="text"
+                        name="email"
+                        id="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    /> 
+				</div> 
         <br />
 				<div> 
 					<label style={{color: "black", fontSize: "25px"}} htmlFor="passw">Password</label>
@@ -34,12 +53,17 @@ const Login=()=>{
 				</div>  
         <br />
         <br />
-				<button style={{borderRadius: "8px", width: "100px", fontSize: "20px"}} type="submit">Login</button>
+				<button
+                    style={{borderRadius: "8px", width: "100px", fontSize: "20px"}}
+                    type="submit"
+                    disable={isLoading}
+                >Sign Up</button>
         <br />
         <br />
+        {error && <div className="error">{error}</div>}
 			</form>
 		</div>
 	)
 }
 
-export default Login    
+export default Signup

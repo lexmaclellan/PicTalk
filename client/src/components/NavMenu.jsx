@@ -20,6 +20,9 @@ export default function NavMenu() {
         <li>
             <NavLink to ="/Login">Login</NavLink>
         </li>
+        <li>
+            <NavLink to ="/Signup">Signup</NavLink>
+        </li>
       </ul>
     </div>
   );
