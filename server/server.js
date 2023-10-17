@@ -1,4 +1,4 @@
-require('dotenv').config()
+console.log(require('dotenv').config({ path: '../.env' }))
 const express = require('express')
 const cors = require('cors')
 const db = require('./config/connection')
