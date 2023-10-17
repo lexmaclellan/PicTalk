@@ -24,10 +24,11 @@ module.exports = {
 
     async registerUser(req, res) {
         try {
+            const usernameExists = await User.find({ username: req.body.username })
             const emailExists = await User.find({ email: req.body.email })
             
-            if (emailExists.length) {
-                return res.status(500).json({ message: 'Email already registered.' })
+            if (emailExists.length || usernameExists.length) {
+                return res.status(500).json({ message: 'Email or username already registered.' })
             }
             else {
                 const newUser = req.body
