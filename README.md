@@ -3,7 +3,7 @@
 ### Project 3: PicTalk
 
 # Project Requirements:
-In this project we have combine a scalable MongoDB back end, a GraphQL API, and an Express.js and Node.js server with a React front end, implementing user authentication with JWT to build a user-focused platform. We have build on the agile development methodologies we’ve used throughout this course. These include storing our project code in GitHub, managing our work with a project management tool, and implementing feature and bug fixes using the Git branch workflow and pull requests.
+In this project we have combine a scalable MongoDB back end, a REST API, and an Express.js and Node.js server with a React front end, implementing user authentication with JWT to build a user-focused platform. We have build on the agile development methodologies we’ve used throughout this course. These include storing our project code in GitHub, managing our work with a project management tool, and implementing feature and bug fixes using the Git branch workflow and pull requests.
 
 For this project, we have started from scratch. We are allow to revisit our front-end abilities in the context of React and solidify  understanding of working with multiple servers in a MERN application. We have builded skills have continued to improve since the first two projects, so naturally our approach are different considering the experience we’ve gained with each new application we’ve built.
 
@@ -11,7 +11,7 @@ The group  use everything we’ve learned throughout this course to create a MER
 
 We Used React for the front end.
 
-we Use GraphQL with a Node.js and Express.js server.
+we Use REST API with a Node.js and Express.js server.
 
 we Use MongoDB and the Mongoose ODM for the database.
 
