@@ -16,7 +16,23 @@ module.exports = {
 
     async loginUser(req, res) {
         try {
-            res.json({ message: "Coming soon" })
+            if (!req.body.username || !req.body.password) {
+                return res.status(500).json({ message: 'You must submit a username and password.' })
+            }
+
+            const user = await User.findOne({ username: req.body.username })
+            if (!user) {
+                return res.status(500).json({ message: 'Invalid username or password.' })
+            }
+
+            const match = await bcrypt.compare(req.body.password, user.password)
+            console.log(match)
+            if (!match) {
+                return res.status(500).json({ message: 'Invalid username or password.' })
+            }
+            const token = createToken(user._id.toHexString())
+
+            res.json({user, token})
         } catch (err) {
             res.status(500).json(err)
         }
