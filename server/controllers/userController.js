@@ -3,15 +3,13 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 function createToken(_id) {
-    console.log(process.env.SECRET)
-    console.log(process.env.MONGO_URI)
-    console.log(process.env.PORT)
     try {
         const token = jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
+        return token
     }
-    catch (err) { console.log(err) }
-    console.log(token)
-    return token
+    catch (err) {
+        console.log(err)
+    }
 }
 
 module.exports = {
@@ -38,9 +36,7 @@ module.exports = {
                 newUser.password = hash
 
                 const user = await User.create(newUser)
-                console.log(user._id.toHexString())
                 const token = createToken(user._id.toHexString())
-                console.log(token)
                 res.json({user, token})
             }
         } catch (err) {
